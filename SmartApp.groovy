@@ -22,7 +22,10 @@ definition(
     iconUrl: "https://lockitron.com/assets/store/lockitron.png",
     iconX2Url: "https://lockitron.com/assets/store/lockitron.png",
     iconX3Url: "https://lockitron.com/assets/store/lockitron.png",
-    oauth: true)
+    oauth: true) {
+	appSetting "clientId"
+	appSetting "clientSecret"
+}
 
 preferences {
 	page(name: "auth", title: "Lockitron", nextPage: "deviceList", content: "authPage", uninstall: true)
@@ -50,8 +53,8 @@ def getServerUrl() { return "https://graph.api.smartthings.com" }
 // Authorise
 def getAuthCodeUrl() { return "https://api.lockitron.com/oauth/authorize" }
 def getAccessTokenUrl() { return "https://api.lockitron.com/oauth/token" }
-def getClientId() { return "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" }
-def getClientSecret() { return "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" }
+def getClientId() { return appSettings.clientId }
+def getClientSecret() { return appSettings.clientSecret }
 // Lockitron API Endpoints
 def getLockitronApiUrl() { return "https://api.lockitron.com" }
 def getLocksPath() { return "/v2/locks" }
